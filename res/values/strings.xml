@@ -53,6 +53,7 @@
     <string name="mediapicker_cameraChooserDescription">Capture pictures or video</string>
     <string name="mediapicker_galleryChooserDescription">Choose images from this device</string>
     <string name="mediapicker_audioChooserDescription">Record audio</string>
+    <string name="mediapicker_contactChooserDescription">Choose a contact from this device</string>
     <string name="mediapicker_gallery_title">Choose media</string>
     <string name="mediapicker_gallery_item_selected_content_description">The media is selected.</string>
     <string name="mediapicker_gallery_item_unselected_content_description">The media is unselected.</string>
@@ -61,6 +62,9 @@
     <string name="mediapicker_gallery_image_item_description">image <xliff:g id="date">%1$tB %1$te %1$tY %1$tl %1$tM %1$tp</xliff:g></string>
     <string name="mediapicker_gallery_image_item_description_no_date">image</string>
     <string name="mediapicker_audio_title">Record audio</string>
+    <string name="mediapicker_contact_title">Choose a contact</string>
+    <!-- Hint text on the contact picker -->
+    <string name="contact_picker_hint_text">Click to open contacts list on this device</string>
 
     <string name="action_share">Share</string>
 
@@ -253,10 +257,6 @@
     <string name="action_archive">Archive</string>
     <!-- Action menu title for unarchiving selected conversations in conversation list -->
     <string name="action_unarchive">Unarchive</string>
-    <!-- Action menu title for turning off notification for the selected conversations in conversation list -->
-    <string name="action_notification_off">Turn off notifications</string>
-    <!-- Action menu title for turning on notification for the selected conversations in conversation list -->
-    <string name="action_notification_on">Turn on notifications</string>
     <!-- Action menu title for adding the contacts for the selected conversations in conversation list -->
     <string name="action_add_contact">Add contact</string>
     <!-- Action menu title for downloading failed message selected in conversation -->
@@ -436,13 +436,9 @@
     <!-- Preference category: Debug -->
     <string name="debug_category_pref_title">Debug</string>
     <!-- Title for the preference for whether or to notify the user of new messages -->
-    <string name="notifications_enabled_pref_title">Notifications</string>
+    <string name="notifications_pref_title">Notifications</string>
     <!-- Title for the notification sound preference -->
-    <string name="notification_sound_pref_title">Sound</string>
-    <!-- What to display in the settings screen for Ringtone when the user chooses "silent" [CHAR LIMIT=100]-->
     <string name="silent_ringtone">Silent</string>
-    <!-- Title for the preference for whether or not to vibrate with notifications -->
-    <string name="notification_vibrate_pref_title">Vibrate</string>
     <string name="blocked_pref_title">Blocked</string>
     <!-- Title for the preference for whether or not to request/show delivery reports for SMS -->
     <string name="delivery_reports_pref_title">SMS delivery reports</string>
@@ -975,4 +971,7 @@
     <string name="selected_sim_content_message"><xliff:g id="selected_sim">%s</xliff:g> selected</string>
 
     <string name="work_directory_display_name">Work Profile contacts</string>
+
+    <!-- When making a call to emergency numbers, show this toast -->
+    <string name="disallow_emergency_call">Can\'t make a voice call to emergency services here.</string>
 </resources>

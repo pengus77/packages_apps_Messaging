@@ -36,7 +36,6 @@ import com.android.messaging.datamodel.MediaScratchFileProvider;
 import com.android.messaging.datamodel.MessagingContentProvider;
 import com.android.messaging.datamodel.action.ActionTestHelpers.StubActionService;
 import com.android.messaging.datamodel.action.ActionTestHelpers.StubActionService.StubActionServiceCallLog;
-import com.android.messaging.datamodel.action.ActionTestHelpers.StubConnectivityUtil;
 import com.android.messaging.datamodel.action.ReadDraftDataAction.ReadDraftDataActionListener;
 import com.android.messaging.datamodel.data.MessageData;
 import com.android.messaging.datamodel.data.MessagePartData;
@@ -113,7 +112,7 @@ public class ReadWriteDraftMessageActionTest extends BugleTestCase {
         participants.add(ParticipantData.getFromRawPhoneBySystemLocale(participantNumber));
 
         final String conversationId = BugleDatabaseOperations.getOrCreateConversation(db, threadId,
-                senderBlocked, participants, false, false, null);
+                senderBlocked, participants);
         assertNotNull("No conversation", conversationId);
         return conversationId;
     }
@@ -189,7 +188,7 @@ public class ReadWriteDraftMessageActionTest extends BugleTestCase {
         participants.add(ParticipantData.getFromRawPhoneBySystemLocale(Long.toString(phoneNumber)));
 
         conversationId = BugleDatabaseOperations.getOrCreateConversation(db, threadId,
-                senderBlocked, participants, false, false, null);
+                senderBlocked, participants);
         assertNotNull("No conversation", conversationId);
 
         final MessageData actual = BugleDatabaseOperations.readDraftMessageData(db, conversationId,
@@ -473,8 +472,7 @@ public class ReadWriteDraftMessageActionTest extends BugleTestCase {
 
         mService = new StubActionService();
         final FakeDataModel fakeDataModel = new FakeDataModel(context)
-                .withActionService(mService)
-                .withConnectivityUtil(new StubConnectivityUtil(context));
+                .withActionService(mService);
         FakeFactory.registerWithFakeContext(getTestContext(), context)
                 .withDataModel(fakeDataModel);
 

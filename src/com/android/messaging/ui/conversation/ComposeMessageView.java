@@ -25,6 +25,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputFilter.LengthFilter;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.Formatter;
@@ -72,6 +73,9 @@ import com.android.messaging.util.SafeAsyncTask;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.UriUtil;
 
+import org.lineageos.messaging.util.PrefsUtils;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -215,6 +219,14 @@ public class ComposeMessageView extends LinearLayout
         mComposeEditText.setFilters(new InputFilter[] {
                 new LengthFilter(MmsConfig.get(ParticipantData.DEFAULT_SELF_SUB_ID)
                         .getMaxTextLimit()) });
+
+        if (PrefsUtils.isShowEmoticonsEnabled()) {
+            mComposeEditText.setInputType(mComposeEditText.getInputType()
+                    | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        } else {
+            mComposeEditText.setInputType(mComposeEditText.getInputType()
+                    & ~InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        }
 
         mSelfSendIcon = (SimIconView) findViewById(R.id.self_send_icon);
         mSelfSendIcon.setOnClickListener(new OnClickListener() {
@@ -683,7 +695,8 @@ public class ComposeMessageView extends LinearLayout
         final boolean hasWorkingDraft = hasMessageText || hasSubject ||
                 mBinding.getData().hasAttachments();
 
-        final List<MessagePartData> attachments = draftMessageData.getReadOnlyAttachments();
+        final List<MessagePartData> attachments =
+                new ArrayList<MessagePartData>(draftMessageData.getReadOnlyAttachments());
         if (draftMessageData.getIsMms()) { // MMS case
             if (draftMessageData.hasAttachments()) {
                 if (hasAttachmentsChanged) {
